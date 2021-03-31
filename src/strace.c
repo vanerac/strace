@@ -13,6 +13,7 @@
 #include <unistd.h>
 
 
+
 // https://stackoverflow.com/questions/23928530/how-does-ptrace-work-in-linux
 // https://nullprogram.com/blog/2018/06/23/
 // https://stackoverflow.com/questions/33431994/extracting-system-call-name-and-arguments-using-ptrace
@@ -75,15 +76,25 @@ _Noreturn int follow_process(int pid) // todo _Noreturn not sure
 
         struct user_regs_struct regs;
 
-        ptrace(PTRACE_GETREGS, pid, NULL, (void *) &(regs));
+        ptrace(PTRACE_GETREGS, pid, NULL, &regs);
 
-        if (regs.rax >= 313)
+
+        // todo use peekdata to get function names & constants
+        // todo use peekuser to get variables
+
+        // https://www.linuxjournal.com/article/6100
+
+
+        if (regs.orig_rax == -1)
             continue;
 
-        printf("[%lld] %lld %lld %lld %lld %lld %lld = %llu\n", regs.orig_rax,
-            regs.rdi, regs.rsi, regs.rdx, regs.r10, regs.r8, regs.r9,
-            regs.rax);
-
+//        if ((long) regs.orig_rax == -ENOSYS) {
+            printf("[%lld] %lld %lld %lld %lld %lld %lld = %lld\n",
+                regs.orig_rax, regs.rdi, regs.rsi, regs.rdx, regs.r10,
+                regs.r8, regs.r9, regs.rax);
+//        } else {
+//            printf("%lld\n", regs.rax);
+//        }
 
 
         /*Todo
@@ -120,7 +131,7 @@ _Noreturn int follow_process(int pid) // todo _Noreturn not sure
 //            ptrace(PTRACE_SYSCALL, pid, NULL, NULL); // todo cant use this
 //
 //
-
+//
 //            waitpid(pid, &(status), 0);
 //
 //            /* Nous allons améliorer ça au Follow-Up */
@@ -131,12 +142,12 @@ _Noreturn int follow_process(int pid) // todo _Noreturn not sure
 //            /* Comportement spécifique à l'utilisation de PTRACE_SYSCALL: */
 //            if (WIFSTOPPED(status) && WSTOPSIG(status) == (SIGTRAP | 0x80)) {
 //                struct user_regs_struct regs;
-//y
+//
 //                ptrace(PTRACE_GETREGS, pid, NULL, &(regs));
 //
 //                /* Vérification syscall-enter-stop */
 //                if ((long) regs.rax == -ENOSYS) {
-//                    printf("[%lld] %lld %lld %lld %lld %lld %lld = ",
+//                    printf("[%lld] %lld %lld %lld %lld %lld %lld = \n",
 //                        regs.orig_rax, regs.rdi, regs.rsi, regs.rdx, regs.r10,
 //                        regs.r8, regs.r9);
 //                } else {
