@@ -9,7 +9,5 @@
 
 int main(int ac, char **ag)
 {
-    // parse args
-    strace(0, ag);
-    return 0;
+    return strace(0, ag);
 }
