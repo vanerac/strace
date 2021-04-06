@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <strace.h>
+#include <pthread.h>
+#include <signal.h>
 
 int follow_process(int pid)
 {
@@ -40,28 +42,74 @@ int follow_process(int pid)
     return status;
 }
 
-int trace_me(int pid, char **args)
+void *launch_thread(void *pid)
 {
-    ptrace(PTRACE_TRACEME, pid, NULL, NULL);
-    if (!pid) {
-        execvp(args[1], args + 1);
-        perror("Execve");
-        return 1;
+    if (!ptrace(PTRACE_ATTACH, *((int *)pid), NULL, NULL)) {
+        printf("strace: Process %d attached\n", *((int *)pid));
+        follow_process(*((int *)pid));
     }
-    return 0;
+    return NULL;
 }
 
-int strace(int pid, char **args)
+int **pids_glob()
 {
+    static int *pids = NULL;
 
-    if (!pid)
-        pid = fork();
+    return &pids;
+}
+
+void sigint_handler(int sig)
+{
+    (void)sig;
+    int *pids = *pids_glob();
+    for (; pids && *pids; ++pids) {
+        printf("\nRes: [%ld]\n", ptrace(PTRACE_DETACH, *pids, NULL, NULL));
+        printf("strace: Process %d detached\n", *pids);
+    }
+    exit(0);
+}
+
+void launch_threads(int *pids)
+{
+    int nb = 0;
+    for (; pids[nb]; ++nb);
+    *pids_glob() = pids;
+    pthread_t *t = malloc(sizeof(pthread_t) * nb);
+    signal(SIGINT, sigint_handler);
+    for (int i = 0; pids[i]; ++i) {
+        pthread_create(&t[i], NULL, launch_thread, &pids[i]);
+    }
+    for (int i = 0; i < nb; ++i) {
+        pthread_join(t[i], NULL);
+    }
+}
+
+int trace_me(char **args)
+{
+    ptrace(PTRACE_TRACEME, 0, NULL, NULL);
+    execvp(*args, args);
+    perror("Execve");
+    return 1;
+}
+
+int strace(char **args, int *pids)
+{
+    int pid = 0;
+
+    if (!args && !pids) {
+        return 84;
+    }
+    // if (pids && *pids) {
+    //     launch_threads(pids);
+    // }
+    // return 0;
+    pid = fork();
     if (pid == -1) {
         perror("fork");
         return 1;
+    } else if (pid == 0 && trace_me(args)) {
+        return 84;
     }
-    if (pid == 0 && trace_me(pid, args))
-        return 1;
 
     int status = follow_process(pid);
     return status;

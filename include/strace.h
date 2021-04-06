@@ -20,7 +20,14 @@
 #include <string.h>
 #include "syscalls.h"
 
-int strace(int pid, char **args);
+#define FLAG_H      (1 << 0)
+#define FLAG_S      (1 << 1)
+#define FLAG_P      (1 << 2)
+
+int *get_flags(void);
+#define flags       (*get_flags())
+
+int strace(char **args, int *pids);
 
 void print_syscall(int pid, syscall_t syscall, struct user_regs_struct regs);
 

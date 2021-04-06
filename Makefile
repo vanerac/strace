@@ -25,7 +25,7 @@ NAME	=		strace
 all:	$(NAME)
 
 $(NAME): $(OBJ) $(OMAIN)
-	gcc -o $(NAME) $(OBJ) $(OMAIN) $(CFLAGS)
+	gcc -o $(NAME) $(OBJ) $(OMAIN) $(CFLAGS) -lpthread
 
 clean:
 	rm -rf $(OBJ)

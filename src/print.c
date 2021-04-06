@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
+#include "strace.h"
 
  void print_buffer(int child, unsigned long long addr, int continuous)
 {
@@ -40,8 +41,7 @@
 }
 
 
-void print_arg(int pid, enum types type, unsigned long long int arg
-)
+void print_arg(int pid, enum types type, unsigned long long int arg)
 {
     switch (type) {
     case NUMBER:
@@ -51,7 +51,11 @@ void print_arg(int pid, enum types type, unsigned long long int arg
         printf("0x%llx", arg);
         break;
     case STRING:
-        print_buffer(pid, arg, 0); // todo use rax to get size ?
+        if (flags & FLAG_S) {
+            print_buffer(pid, arg, 0); // todo use rax to get size ?
+        } else {
+            printf("0x%llx", arg);
+        }
         break;
     default:
         break;
@@ -63,6 +67,9 @@ void print_syscall(int pid, syscall_t syscall, struct user_regs_struct regs)
     unsigned long long int args[] = {regs.rdi, regs.rsi, regs.rdx, regs.r10,
         regs.r8, regs.r9};
 
+    if (flags & FLAG_P) {
+        printf("[%d] ", pid);
+    }
     printf("%s(", syscall.name);
     for (int i = 0; i < syscall.nbr_args; ++i) {
         if (i > 0)
