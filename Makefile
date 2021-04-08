@@ -7,6 +7,8 @@
 
 SRC		=		src/print.c			\
 				src/strace.c		\
+				src/tracer.c		\
+				src/tracee.c		\
 
 OBJ		=		$(SRC:%.c=%.o)
 
@@ -17,7 +19,7 @@ OTRC	=		$(TRC:.c=.o)
 MAIN	=		src/main.c
 OMAIN	=		$(MAIN:.c=.o)
 
-CFLAGS	=		-Iinclude/ -Wextra -Wall
+CFLAGS	=		-Iinclude/ -Iinclude/generic/ -Wextra -Wall
 
 NAME	=		strace
 

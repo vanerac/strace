@@ -10,12 +10,13 @@
 #include <stdio.h>
 #include <syscalls.h>
 #include <sys/user.h>
+#include <sys/wait.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include "strace.h"
 
- void print_buffer(int child, unsigned long long addr, int continuous)
+void print_buffer(int child, unsigned long long addr, int continuous)
 {
     char *buffer = calloc(1, 1024);
     unsigned long long int temp = 0;
@@ -62,21 +63,25 @@ void print_arg(int pid, enum types type, unsigned long long int arg)
     }
 }
 
-void print_syscall(int pid, syscall_t syscall, struct user_regs_struct regs)
+void print_syscall(int pid, struct_sysent syscall, struct user_regs_struct regs, unsigned long long int args[])
 {
-    unsigned long long int args[] = {regs.rdi, regs.rsi, regs.rdx, regs.r10,
-        regs.r8, regs.r9};
-
-    if (flags & FLAG_P) {
-        printf("[%d] ", pid);
-    }
-    printf("%s(", syscall.name);
-    for (int i = 0; i < syscall.nbr_args; ++i) {
+    // if (flags & FLAG_P) {
+    //     printf("[%d] ", pid);
+    // }
+    printf("%s(", syscall.sys_name);
+    for (int i = 0; i < syscall.nargs; ++i) {
         if (i > 0)
             printf(", ");
-        print_arg(pid, syscall.arg_type[i], args[i]);
+        // print_arg(pid, syscall.arg_type[i], args[i]);
+        printf("0x%llx", args[i]);
     }
     printf(") = ");
-    print_arg(pid, syscall.return_type, regs.rax);
+    if (!(syscall.sys_flags && syscall.sys_flags & SE)) {
+        ptrace(PTRACE_SINGLESTEP, pid, NULL, NULL);
+        waitpid(pid, NULL, 0);
+        ptrace(PTRACE_GETREGS, pid, NULL, &regs);
+    }
+    printf("0x%llx", regs.rax);
+    // print_arg(pid, syscall.return_type, regs.rax);
     printf("\n");
 }

@@ -5,7 +5,7 @@
 ** main.c file
 */
 
-#include <strace.h>
+#include "strace.h"
 
 static const int nb_flags = 5;
 
@@ -42,49 +42,39 @@ static int is_uint(const char *str)
     return 1;
 }
 
-static int *manage_flags(int *ac, char **av)
+static int manage_flags(int *ac, char **av)
 {
-    int *pids = NULL;
-    int size = 0;
+    int pid = 0;
 
     for (int i = 0, cp = *ac, f = 0; i < cp && **av == '-'; ++i, ++av, --*ac) {
         for (f = 0; f < nb_flags && strcmp(*av, flags_name[f]); ++f);
-        if (f == nb_flags || flags_value[f] == FLAG_H || (flags_value[f] ==
-        FLAG_P && (i + 1 >= cp || !is_uint(*(av + 1)) || !atoi(*(av + 1))))) {
+        if (f == nb_flags || flags_value[f] == FLAG_H
+        || (flags_value[f] == FLAG_P &&
+        (i + 1 >= cp || !is_uint(*(av + 1)) || !atoi(*(av + 1)) || pid))) {
             flags = (f < nb_flags && flags_value[f] == FLAG_H) ? FLAG_H : -1;
             break;
         } else if (flags_value[f] == FLAG_P) {
-            pids = realloc(pids, ++size);
-            pids[size - 1] = atoi(*(av + 1));
+            pid = atoi(*(av + 1));
             ++i, ++av, --*ac;
         }
         flags |= flags_value[f];
     }
-    if (pids) {
-        pids = realloc(pids, ++size);
-        pids[size - 1] = 0;
-    }
-    return pids;
+    return pid;
 }
 
 int main(int ac, char **av)
 {
     char *bin_name = *av;
     int cp = --ac;
-    int *pids = manage_flags(&ac, ++av);
+    int pid = manage_flags(&ac, ++av);
 
     av += cp - ac;
-    if (flags == FLAG_H || flags == -1) {
-        free(pids);
-    }
     if (flags == FLAG_H) {
         printf("USAGE: %s [-s] [-p <pid>|<command>]\n", bin_name);
         return 0;
-    } else if (flags == -1 || (!(flags & FLAG_P) && !ac)) {
+    } else if (flags == -1 || (!(flags & FLAG_P) && !ac)
+    || (flags & FLAG_P && ac)) {
         return 84;
     }
-    if (!ac && (!pids || !*pids)) {
-        return 84;
-    }
-    return strace(av, pids);
+    return strace(av, pid);
 }

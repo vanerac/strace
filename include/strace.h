@@ -19,6 +19,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "syscalls.h"
+#include "sysent.h"
+#include "sysent_shorthand_defs.h"
+
+#define SEN(syscall_name) 0, NULL
+
+typedef union instruction_u
+{
+    char byte[sizeof(long int)];
+    long int inst;
+} instruction_t;
 
 #define FLAG_H      (1 << 0)
 #define FLAG_S      (1 << 1)
@@ -27,8 +37,13 @@
 int *get_flags(void);
 #define flags       (*get_flags())
 
-int strace(char **args, int *pids);
+int strace(char **args, int pid);
 
-void print_syscall(int pid, syscall_t syscall, struct user_regs_struct regs);
+int follow_process(int pid);
+
+int trace_me(char **args);
+int attach_to_pid(int pid);
+
+void print_syscall(int pid, struct_sysent syscall, struct user_regs_struct regs, unsigned long long int args[]);
 
 #endif //C_STRACE_H
