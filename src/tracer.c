@@ -5,18 +5,12 @@
 ** tracer
 */
 
-#include <errno.h>
 #include <stdio.h>
 #include <sys/ptrace.h>
 #include <sys/user.h>
 #include <sys/wait.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include <string.h>
-#include <strace.h>
-#include <pthread.h>
-#include <signal.h>
-#include <string.h>
+#include "strace.h"
 
 static const struct_sysent sysentx86_64[] = {
     #include "x86_64/syscallent.h"

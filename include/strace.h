@@ -10,15 +10,6 @@
 #ifndef C_STRACE_H
 #define C_STRACE_H
 
-#include <sys/ptrace.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <syscalls.h>
-#include <sys/user.h>
-#include <errno.h>
-#include <stdlib.h>
-#include <string.h>
-#include "syscalls.h"
 #include "sysent.h"
 #include "sysent_shorthand_defs.h"
 
@@ -43,7 +34,5 @@ int follow_process(int pid);
 
 int trace_me(char **args);
 int attach_to_pid(int pid);
-
-void print_syscall(int pid, struct_sysent syscall, struct user_regs_struct regs, unsigned long long int args[]);
 
 #endif //C_STRACE_H

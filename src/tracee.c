@@ -5,20 +5,15 @@
 ** tracee
 */
 
-#include <errno.h>
-#include <stdio.h>
 #include <sys/ptrace.h>
-#include <sys/user.h>
 #include <sys/wait.h>
+#include <stdio.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
-#include <strace.h>
-#include <pthread.h>
-#include <signal.h>
-#include <string.h>
+#include "strace.h"
 
-static int *pid_glob()
+static int *pid_glob(void)
 {
     static int pid = 0;
 

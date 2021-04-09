@@ -5,6 +5,9 @@
 ** main.c file
 */
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "strace.h"
 
 static const int nb_flags = 5;

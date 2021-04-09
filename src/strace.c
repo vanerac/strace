@@ -5,18 +5,10 @@
 ** strace.c file
 */
 
-#include <errno.h>
-#include <stdio.h>
-#include <sys/ptrace.h>
-#include <sys/user.h>
-#include <sys/wait.h>
+#include <sys/types.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <strace.h>
-#include <pthread.h>
-#include <signal.h>
-#include <string.h>
+#include <stdio.h>
+#include "strace.h"
 
 int strace(char **args, int pid)
 {

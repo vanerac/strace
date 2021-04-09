@@ -5,8 +5,7 @@
 ## Makefile file
 ##
 
-SRC		=		src/print.c			\
-				src/strace.c		\
+SRC		=		src/strace.c		\
 				src/tracer.c		\
 				src/tracee.c		\
 
