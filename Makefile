@@ -5,6 +5,8 @@
 ## Makefile file
 ##
 
+.NOTPARALLEL:
+
 SRC		=		src/strace.c		\
 				src/tracer.c		\
 				src/tracee.c		\
@@ -23,10 +25,27 @@ CFLAGS	=		-Iinclude/ -Iinclude/generic/ -Wextra -Wall
 NAME	=		strace
 
 
-all:	$(NAME)
+all:	update_headers $(NAME)
 
 $(NAME): $(OBJ) $(OMAIN)
 	gcc -o $(NAME) $(OBJ) $(OMAIN) $(CFLAGS) -lpthread
+
+update_headers:
+		mkdir -p include/32/
+		mkdir -p include/generic/
+		mkdir -p include/i386/
+		mkdir -p include/x86_64/
+		./updateSyscalls.sh || cp -r bonuses/* include/
+.PHONY:	update_headers
+
+clean_headers:
+		rm -rf include/32/
+		rm -rf include/generic/
+		rm -rf include/i386/
+		rm -rf include/x86_64/
+		rm -rf include/sysent_shorthand_defs.h
+		rm -rf include/sysent.h
+.PHONY:	clean_headers
 
 clean:
 	rm -rf $(OBJ)
