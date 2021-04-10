@@ -25,7 +25,7 @@ CFLAGS	=		-Iinclude/ -Iinclude/generic/ -Wextra -Wall
 NAME	=		strace
 
 
-all:	update_headers $(NAME)
+all:	$(NAME)
 
 $(NAME): $(OBJ) $(OMAIN)
 	gcc -o $(NAME) $(OBJ) $(OMAIN) $(CFLAGS) -lpthread
@@ -35,7 +35,7 @@ update_headers:
 		mkdir -p include/generic/
 		mkdir -p include/i386/
 		mkdir -p include/x86_64/
-		./updateSyscalls.sh || cp -r bonuses/* include/
+		./updateSyscalls.sh
 .PHONY:	update_headers
 
 clean_headers:
