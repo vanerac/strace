@@ -15,8 +15,7 @@
 
 #define SEN(syscall_name) 0, NULL
 
-typedef union instruction_u
-{
+typedef union instruction_u {
     char byte[sizeof(long int)];
     long int inst;
 } instruction_t;
@@ -26,6 +25,7 @@ typedef union instruction_u
 #define FLAG_P      (1 << 2)
 
 int *get_flags(void);
+
 #define flags       (*get_flags())
 
 int strace(char **args, int pid);
@@ -33,6 +33,7 @@ int strace(char **args, int pid);
 int follow_process(int pid);
 
 int trace_me(char **args);
+
 int attach_to_pid(int pid);
 
 #endif //C_STRACE_H
