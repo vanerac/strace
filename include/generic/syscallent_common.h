@@ -1,15 +1,15 @@
 /*
- * Copyright (c) 2019-2021 The strace developers.
- * All rights reserved.
- *
- * SPDX-License-Identifier: LGPL-2.1-or-later
- */
+** EPITECH PROJECT, 2021
+** B-PSU-402-BDX-4-1-strace-corentin.mas
+** File description:
+** syscallent-common
+*/
 
 #ifndef BASE_NR
     # define BASE_NR 0
 #endif
 [BASE_NR + 424] = {
-4,    TD|TS|TP,
+4,    TD | TS | TP,
 
 SEN(pidfd_send_signal),
 
@@ -21,25 +21,25 @@ SEN(io_uring_setup),
 
 "io_uring_setup"    },
 [BASE_NR + 426] = {
-6,    TD|TS,
+6,    TD | TS,
 
 SEN(io_uring_enter),
 
 "io_uring_enter"    },
 [BASE_NR + 427] = {
-4,    TD|TM,
+4,    TD | TM,
 
 SEN(io_uring_register),
 
 "io_uring_register"    },
 [BASE_NR + 428] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(open_tree),
 
 "open_tree"        },
 [BASE_NR + 429] = {
-5,    TD|TF,
+5,    TD | TF,
 
 SEN(move_mount),
 
@@ -51,7 +51,7 @@ SEN(fsopen),
 
 "fsopen"        },
 [BASE_NR + 431] = {
-5,    TD|TF,
+5,    TD | TF,
 
 SEN(fsconfig),
 
@@ -63,7 +63,7 @@ SEN(fsmount),
 
 "fsmount"        },
 [BASE_NR + 433] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(fspick),
 
@@ -87,7 +87,7 @@ SEN(close_range),
 
 "close_range"        },
 [BASE_NR + 437] = {
-4,    TD|TF,
+4,    TD | TF,
 
 SEN(openat2),
 
@@ -99,7 +99,7 @@ SEN(pidfd_getfd),
 
 "pidfd_getfd"        },
 [BASE_NR + 439] = {
-4,    TD|TF,
+4,    TD | TF,
 
 SEN(faccessat2),
 

@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2019-2021 The strace developers.
- * All rights reserved.
- *
- * SPDX-License-Identifier: LGPL-2.1-or-later
- */
+** EPITECH PROJECT, 2021
+** B-PSU-402-BDX-4-1-strace-corentin.mas
+** File description:
+** syscallent-common-32
+*/
 
 #ifndef BASE_NR
     # define BASE_NR 0
@@ -63,7 +63,7 @@ SEN(timerfd_settime64),
 
 "timerfd_settime64"    },
 [BASE_NR + 412] = {
-4,    TD|TF,
+4,    TD | TF,
 
 SEN(utimensat_time64),
 

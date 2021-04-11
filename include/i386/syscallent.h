@@ -1,11 +1,9 @@
 /*
- * Copyright (c) 1993 Branko Lankester <branko@hacktic.nl>
- * Copyright (c) 1993, 1994, 1995 Rick Sladkey <jrs@world.std.com>
- * Copyright (c) 1995-2021 The strace developers.
- * All rights reserved.
- *
- * SPDX-License-Identifier: LGPL-2.1-or-later
- */
+** EPITECH PROJECT, 2021
+** B-PSU-402-BDX-4-1-strace-corentin.mas
+** File description:
+** syscallent
+*/
 
 [  0] = {
 0,    0,
@@ -14,7 +12,7 @@ SEN(restart_syscall),
 
 "restart_syscall"    },
 [  1] = {
-1,    TP|SE,
+1,    TP | SE,
 
 SEN(exit),
 
@@ -38,7 +36,7 @@ SEN(write),
 
 "write"            },
 [  5] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(open),
 
@@ -56,7 +54,7 @@ SEN(waitpid),
 
 "waitpid"        },
 [  8] = {
-2,    TD|TF,
+2,    TD | TF,
 
 SEN(creat),
 
@@ -74,7 +72,7 @@ SEN(unlink),
 
 "unlink"        },
 [ 11] = {
-3,    TF|TP|TSD|SE|SI,
+3,    TF | TP | TSD | SE | SI,
 
 SEN(execve),
 
@@ -112,7 +110,7 @@ SEN(chown16),
 [ 17] = {
 0,    TM,        SEN(break),            "break"            },
 [ 18] = {
-2,    TF|TST|TSTA,
+2,    TF | TST | TSTA,
 
 SEN(oldstat),
 
@@ -124,7 +122,7 @@ SEN(lseek),
 
 "lseek"            },
 [ 20] = {
-0,    PU|NF,
+0,    PU | NF,
 
 SEN(getpid),
 
@@ -148,7 +146,7 @@ SEN(setuid16),
 
 "setuid"        },
 [ 24] = {
-0,    TC|PU|NF,
+0,    TC | PU | NF,
 
 SEN(getuid16),
 
@@ -172,7 +170,7 @@ SEN(alarm),
 
 "alarm"            },
 [ 28] = {
-2,    TD|TFST|TSTA,
+2,    TD | TFST | TSTA,
 
 SEN(oldfstat),
 
@@ -226,7 +224,7 @@ SEN(sync),
 
 "sync"            },
 [ 37] = {
-2,    TS|TP,
+2,    TS | TP,
 
 SEN(kill),
 
@@ -274,7 +272,7 @@ SEN(prof),
 
 "prof"            },
 [ 45] = {
-1,    TM|SI,
+1,    TM | SI,
 
 SEN(brk),
 
@@ -286,7 +284,7 @@ SEN(setgid16),
 
 "setgid"        },
 [ 47] = {
-0,    TC|PU|NF,
+0,    TC | PU | NF,
 
 SEN(getgid16),
 
@@ -298,13 +296,13 @@ SEN(signal),
 
 "signal"        },
 [ 49] = {
-0,    TC|PU|NF,
+0,    TC | PU | NF,
 
 SEN(geteuid16),
 
 "geteuid"        },
 [ 50] = {
-0,    TC|PU|NF,
+0,    TC | PU | NF,
 
 SEN(getegid16),
 
@@ -388,13 +386,13 @@ SEN(dup2),
 
 "dup2"            },
 [ 64] = {
-0,    PU|NF,
+0,    PU | NF,
 
 SEN(getppid),
 
 "getppid"        },
 [ 65] = {
-0,    PU|NF,
+0,    PU | NF,
 
 SEN(getpgrp),
 
@@ -508,7 +506,7 @@ SEN(symlink),
 
 "symlink"        },
 [ 84] = {
-2,    TF|TLST|TSTA,
+2,    TF | TLST | TSTA,
 
 SEN(oldlstat),
 
@@ -544,13 +542,13 @@ SEN(readdir),
 
 "readdir"        },
 [ 90] = {
-1,    TD|TM|SI,
+1,    TD | TM | SI,
 
 SEN(old_mmap),
 
 "mmap"            },
 [ 91] = {
-2,    TM|SI,
+2,    TM | SI,
 
 SEN(munmap),
 
@@ -598,13 +596,13 @@ SEN(profil),
 
 "profil"        },
 [ 99] = {
-2,    TF|TSF|TSFA,
+2,    TF | TSF | TSFA,
 
 SEN(statfs),
 
 "statfs"        },
 [100] = {
-2,    TD|TFSF|TSFA,
+2,    TD | TFSF | TSFA,
 
 SEN(fstatfs),
 
@@ -616,7 +614,7 @@ SEN(ioperm),
 
 "ioperm"        },
 [102] = {
-2,    TD|TSD,
+2,    TD | TSD,
 
 SEN(socketcall),
 
@@ -640,19 +638,19 @@ SEN(getitimer),
 
 "getitimer"        },
 [106] = {
-2,    TF|TST|TSTA,
+2,    TF | TST | TSTA,
 
 SEN(stat),
 
 "stat"            },
 [107] = {
-2,    TF|TLST|TSTA,
+2,    TF | TLST | TSTA,
 
 SEN(lstat),
 
 "lstat"            },
 [108] = {
-2,    TD|TFST|TSTA,
+2,    TD | TFST | TSTA,
 
 SEN(fstat),
 
@@ -706,7 +704,7 @@ SEN(sysinfo),
 
 "sysinfo"        },
 [117] = {
-6,    TI|TSD,
+6,    TI | TSD,
 
 SEN(ipc),
 
@@ -754,7 +752,7 @@ SEN(adjtimex32),
 
 "adjtimex"        },
 [125] = {
-3,    TM|SI,
+3,    TM | SI,
 
 SEN(mprotect),
 
@@ -832,13 +830,13 @@ SEN(afs_syscall),
 
 "afs_syscall"        },
 [138] = {
-1,    TC|NF,
+1,    TC | NF,
 
 SEN(setfsuid16),
 
 "setfsuid"        },
 [139] = {
-1,    TC|NF,
+1,    TC | NF,
 
 SEN(setfsgid16),
 
@@ -982,7 +980,7 @@ SEN(nanosleep_time32),
 
 "nanosleep"        },
 [163] = {
-5,    TM|SI,
+5,    TM | SI,
 
 SEN(mremap),
 
@@ -1072,7 +1070,7 @@ SEN(rt_sigtimedwait_time32),
 
 "rt_sigtimedwait"    },
 [178] = {
-3,    TS|TP,
+3,    TS | TP,
 
 SEN(rt_sigqueueinfo),
 
@@ -1126,7 +1124,7 @@ SEN(sigaltstack),
 
 "sigaltstack"        },
 [187] = {
-4,    TD|TN,
+4,    TD | TN,
 
 SEN(sendfile),
 
@@ -1156,7 +1154,7 @@ SEN(getrlimit),
 
 "ugetrlimit"        },
 [192] = {
-6,    TD|TM|SI,
+6,    TD | TM | SI,
 
 SEN(mmap_pgoff),
 
@@ -1174,19 +1172,19 @@ SEN(ftruncate64),
 
 "ftruncate64"        },
 [195] = {
-2,    TF|TST|TSTA,
+2,    TF | TST | TSTA,
 
 SEN(stat64),
 
 "stat64"        },
 [196] = {
-2,    TF|TLST|TSTA,
+2,    TF | TLST | TSTA,
 
 SEN(lstat64),
 
 "lstat64"        },
 [197] = {
-2,    TD|TFST|TSTA,
+2,    TD | TFST | TSTA,
 
 SEN(fstat64),
 
@@ -1198,25 +1196,25 @@ SEN(chown),
 
 "lchown32"        },
 [199] = {
-0,    TC|PU|NF,
+0,    TC | PU | NF,
 
 SEN(getuid),
 
 "getuid32"        },
 [200] = {
-0,    TC|PU|NF,
+0,    TC | PU | NF,
 
 SEN(getgid),
 
 "getgid32"        },
 [201] = {
-0,    TC|PU|NF,
+0,    TC | PU | NF,
 
 SEN(geteuid),
 
 "geteuid32"        },
 [202] = {
-0,    TC|PU|NF,
+0,    TC | PU | NF,
 
 SEN(getegid),
 
@@ -1294,13 +1292,13 @@ SEN(setgid),
 
 "setgid32"        },
 [215] = {
-1,    TC|NF,
+1,    TC | NF,
 
 SEN(setfsuid),
 
 "setfsuid32"        },
 [216] = {
-1,    TC|NF,
+1,    TC | NF,
 
 SEN(setfsgid),
 
@@ -1338,7 +1336,7 @@ SEN(fcntl64),
 [222 ... 223] = {
 },
 [224] = {
-0,    PU|NF,
+0,    PU | NF,
 
 SEN(gettid),
 
@@ -1422,13 +1420,13 @@ SEN(fremovexattr),
 
 "fremovexattr"        },
 [238] = {
-2,    TS|TP,
+2,    TS | TP,
 
 SEN(tkill),
 
 "tkill"            },
 [239] = {
-4,    TD|TN,
+4,    TD | TN,
 
 SEN(sendfile64),
 
@@ -1502,7 +1500,7 @@ SEN(fadvise64),
 [251] = {
 }, /* sys_set_zone_reclaim */
 [252] = {
-1,    TP|SE,
+1,    TP | SE,
 
 SEN(exit),
 
@@ -1532,7 +1530,7 @@ SEN(epoll_wait),
 
 "epoll_wait"        },
 [257] = {
-5,    TM|SI,
+5,    TM | SI,
 
 SEN(remap_file_pages),
 
@@ -1598,19 +1596,19 @@ SEN(clock_nanosleep_time32),
 
 "clock_nanosleep"    },
 [268] = {
-3,    TF|TSF|TSFA,
+3,    TF | TSF | TSFA,
 
 SEN(statfs64),
 
 "statfs64"        },
 [269] = {
-3,    TD|TFSF|TSFA,
+3,    TD | TFSF | TSFA,
 
 SEN(fstatfs64),
 
 "fstatfs64"        },
 [270] = {
-3,    TS|TP,
+3,    TS | TP,
 
 SEN(tgkill),
 
@@ -1738,7 +1736,7 @@ SEN(inotify_init),
 
 "inotify_init"        },
 [292] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(inotify_add_watch),
 
@@ -1756,79 +1754,79 @@ SEN(migrate_pages),
 
 "migrate_pages"        },
 [295] = {
-4,    TD|TF,
+4,    TD | TF,
 
 SEN(openat),
 
 "openat"        },
 [296] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(mkdirat),
 
 "mkdirat"        },
 [297] = {
-4,    TD|TF,
+4,    TD | TF,
 
 SEN(mknodat),
 
 "mknodat"        },
 [298] = {
-5,    TD|TF,
+5,    TD | TF,
 
 SEN(fchownat),
 
 "fchownat"        },
 [299] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(futimesat),
 
 "futimesat"        },
 [300] = {
-4,    TD|TF|TFST|TSTA,
+4,    TD | TF | TFST | TSTA,
 
 SEN(fstatat64),
 
 "fstatat64"        },
 [301] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(unlinkat),
 
 "unlinkat"        },
 [302] = {
-4,    TD|TF,
+4,    TD | TF,
 
 SEN(renameat),
 
 "renameat"        },
 [303] = {
-5,    TD|TF,
+5,    TD | TF,
 
 SEN(linkat),
 
 "linkat"        },
 [304] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(symlinkat),
 
 "symlinkat"        },
 [305] = {
-4,    TD|TF,
+4,    TD | TF,
 
 SEN(readlinkat),
 
 "readlinkat"        },
 [306] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(fchmodat),
 
 "fchmodat"        },
 [307] = {
-3,    TD|TF,
+3,    TD | TF,
 
 SEN(faccessat),
 
@@ -1906,13 +1904,13 @@ SEN(epoll_pwait),
 
 "epoll_pwait"        },
 [320] = {
-4,    TD|TF,
+4,    TD | TF,
 
 SEN(utimensat_time32),
 
 "utimensat"        },
 [321] = {
-3,    TD|TS,
+3,    TD | TS,
 
 SEN(signalfd),
 
@@ -1948,7 +1946,7 @@ SEN(timerfd_gettime32),
 
 "timerfd_gettime"    },
 [327] = {
-4,    TD|TS,
+4,    TD | TS,
 
 SEN(signalfd4),
 
@@ -1996,7 +1994,7 @@ SEN(pwritev),
 
 "pwritev"        },
 [335] = {
-4,    TP|TS,
+4,    TP | TS,
 
 SEN(rt_tgsigqueueinfo),
 
@@ -2020,7 +2018,7 @@ SEN(fanotify_init),
 
 "fanotify_init"        },
 [339] = {
-6,    TD|TF,
+6,    TD | TF,
 
 SEN(fanotify_mark),
 
@@ -2032,7 +2030,7 @@ SEN(prlimit64),
 
 "prlimit64"        },
 [341] = {
-5,    TD|TF,
+5,    TD | TF,
 
 SEN(name_to_handle_at),
 
@@ -2104,7 +2102,7 @@ SEN(sched_getattr),
 
 "sched_getattr"        },
 [353] = {
-5,    TD|TF,
+5,    TD | TF,
 
 SEN(renameat2),
 
@@ -2134,7 +2132,7 @@ SEN(bpf),
 
 "bpf"            },
 [358] = {
-5,    TD|TF|TP|TSD|SE|SI,
+5,    TD | TF | TP | TSD | SE | SI,
 
 SEN(execveat),
 
@@ -2266,7 +2264,7 @@ SEN(pwritev2),
 
 "pwritev2"        },
 [380] = {
-4,    TM|SI,
+4,    TM | SI,
 
 SEN(pkey_mprotect),
 
@@ -2284,7 +2282,7 @@ SEN(pkey_free),
 
 "pkey_free"        },
 [383] = {
-5,    TD|TF|TFST|TSTA,
+5,    TD | TF | TFST | TSTA,
 
 SEN(statx),
 
@@ -2333,13 +2331,13 @@ SEN(shmctl),
 
 "shmctl"        },
 [397] = {
-3,    TI|TM|SI,
+3,    TI | TM | SI,
 
 SEN(shmat),
 
 "shmat"            },
 [398] = {
-1,    TI|TM|SI,
+1,    TI | TM | SI,
 
 SEN(shmdt),
 
@@ -2369,8 +2367,8 @@ SEN(msgctl),
 
 "msgctl"        },
 
-#include "../32/syscallent-common-32.h"
-#include "syscallent-common.h"
+#include "../32/syscallent_common_32.h"
+#include "syscallent_common.h"
 
 #define SYS_socket_subcall    500
 

@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2017-2021 The strace developers.
- * All rights reserved.
- *
- * SPDX-License-Identifier: LGPL-2.1-or-later
- */
+** EPITECH PROJECT, 2021
+** B-PSU-402-BDX-4-1-strace-corentin.mas
+** File description:
+** sysent_shorthand_defs
+*/
 
 #ifdef    STRACE_TESTS_H
 
