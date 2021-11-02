@@ -1,0 +1,2 @@
+# strace
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0b4c53bd60684491b1a57d8c65250bf1)](https://app.codacy.com/gh/vanerac/strace?utm_source=github.com&utm_medium=referral&utm_content=vanerac/strace&utm_campaign=Badge_Grade_Settings)
